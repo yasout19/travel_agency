@@ -10,5 +10,6 @@ from django.contrib.auth.decorators import login_required
 def user_home(request):
     voyages=voyage.objects.all()
     return render(request,'user_home.html',{'voyages':voyages})
-
+def contact(request):
+    return render(request,'user_contact.html')
 # Create your views here.
