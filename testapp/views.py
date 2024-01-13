@@ -24,6 +24,9 @@ def packages(request):
     voyages=voyage.objects.all()
     return render(request,'package.html',{'voyages':voyages})
 def signup(request):
+ if request.user.is_authenticated:
+  return redirect('user:home')   # If user is already logged in then redirect him to homepage.
+ else:
     if request.method == 'POST':
         form = createuserform(request.POST)
         if form.is_valid():
@@ -35,17 +38,20 @@ def signup(request):
         form = createuserform()
     return render(request, 'registration/signup.html', {'form': form})
 def signin(request):
+ if request.user.is_authenticated:
+    return redirect('user:home')   # If user is already logged in then redirect him to homepage.
+ else:
     if request.method == 'POST':
         username=request.POST.get('username')
         password=request.POST.get('password')
         user=authenticate(request,username=username,password=password)
         if user is not None:
             login(request,user)
-            return redirect('home')
+            return redirect('user:home')
         else:
             messages.error(request,"Invalid Email or Password")
     
     return render(request, 'registration/signin.html')
-def logout(request):
+def logout_view(request):
     logout(request)
-    return redirect('signin')
+    return redirect('testapp:signin')

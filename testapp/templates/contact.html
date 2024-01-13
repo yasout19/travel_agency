@@ -79,21 +79,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="{% url 'home' %}" class="nav-item nav-link">Home</a>
-                    <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
-                    <a href="{% url 'service' %}" class="nav-item nav-link">Services</a>
-                    <a href="{% url 'package' %}" class="nav-item nav-link">Packages</a>
+                    <a href="{% url 'testapp:home' %}" class="nav-item nav-link">Home</a>
+                    <a href="{% url 'testapp:about' %}" class="nav-item nav-link">About</a>
+                    <a href="{% url 'testapp:service' %}" class="nav-item nav-link">Services</a>
+                    <a href="{% url 'testapp;package' %}" class="nav-item nav-link">Packages</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
-                            <a href="{% url 'distination' %}" class="dropdown-item">Destination</a>
+                            <a href="{% url 'testapp:distination' %}" class="dropdown-item">Destination</a>
                             <a href="booking.html" class="dropdown-item">Booking</a>
                             <a href="team.html" class="dropdown-item">Travel Guides</a>
                         </div>
                     </div>
-                    <a href="{% url 'contact' %}" class="nav-item nav-link active">Contact</a>
+                    <a href="{% url 'testapp:contact' %}" class="nav-item nav-link active">Contact</a>
                 </div>
-                <a href="{% url 'signup' %}" class="btn btn-primary rounded-pill py-2 px-4">Register</a>
+                <a href="{% url 'testapp:signup' %}" class="btn btn-primary rounded-pill py-2 px-4">Register</a>
             </div>
         </nav>
 
