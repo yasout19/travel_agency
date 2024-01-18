@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Tourist - Travel Agency HTML Template</title>
+    <title>Tourist</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -71,7 +71,7 @@
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
             <a href="" class="navbar-brand p-0">
-                <h1 class="text-primary m-0"><i class="fa fa-map-marker-alt me-3"></i>{{request.user}}</h1>
+                <h1 class="text-primary m-0"><i class="fa fa-map-marker-alt me-3"></i>Tourist</h1>
                 <!-- <img src="img/logo.png" alt="Logo"> -->
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -84,7 +84,13 @@
                     
                     <a href="{% url 'user:contact' %}" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="{% url 'testapp:logout' %}" class="btn btn-primary rounded-pill py-2 px-4">Logout</a>
+                <div class="dropdown">
+                    <button onclick="toggleDropdown()" class="btn btn-primary rounded-pill py-2 px-4">{{request.user.username}}</button>
+                    <div id="dropdownContent" class="dropdown-content">
+                        <a href="{% url 'dash:home' %}">Dashboard</a>
+                        <a href="{% url 'testapp:logout' %}">Logout</a>
+                    </div>
+                </div>
             </div>
         </nav>
 
@@ -653,6 +659,57 @@
 
     <!-- Template Javascript -->
     <script src="{% static 'js/main.js'%}"></script>
+    <style>
+        /* Add this to your CSS file or style tag */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .show {
+            display: block;
+        }
+        </style>
+        
+        <script>
+        // Add this to your JavaScript file or script tag
+        function toggleDropdown() {
+            var dropdownContent = document.getElementById("dropdownContent");
+            dropdownContent.classList.toggle("show");
+        }
+        
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+        </script>
 </body>
 
 </html>

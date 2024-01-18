@@ -33,7 +33,7 @@ def signup(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request,"Account created for "+username)
-            return redirect('signin')  # Redirect to the login page after successful registration
+            return redirect('testapp:signin')  # Redirect to the login page after successful registration
     else:
         form = createuserform()
     return render(request, 'registration/signup.html', {'form': form})
