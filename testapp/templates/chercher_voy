@@ -1,0 +1,25 @@
+<!-- recherche_voyages.html -->
+
+{% extends 'package.html' %}
+
+{% block content %}
+    <h2>Résultats de la recherche de voyages</h2>
+
+    {% if voyages %}
+        <ul>
+            {% for voyage in voyages %}
+                <li>
+                    <strong>{{ voyage.ville_origine }} - {{ voyage.ville_destination }}</strong><br>
+                    <img src="{{ voyage.image.url }}" alt="{{ voyage.ville_destination }} Image"><br>
+                    Date aller: {{ voyage.date_aller }}<br>
+                    Date retour: {{ voyage.date_retour }}<br>
+                    Description: {{ voyage.description }}<br>
+                    Prix: {{ voyage.prix }} MAD<br>
+                    Durée: {{ voyage.duration }} jours<br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun résultat trouvé pour la recherche.</p>
+    {% endif %}
+{% endblock %}

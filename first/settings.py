@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'testapp',
     'user',
     'dashbord',
+    'account',
+    'dashboard_admin',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'first.urls'
@@ -58,7 +61,7 @@ ROOT_URLCONF = 'first.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'testapp', 'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,3 +136,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'testapp/static'),  # Adjust the path accordingly
 ]
 
+STATIC_URL = '/static/'
+MEDIA_URL = '/voyage_images/'
+
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER='yasout69@gmail.com'
+EMAIL_HOST_PASSWORD='zonj ceth bxjz brbl'
