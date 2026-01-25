@@ -15,13 +15,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path,include,re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from django.shortcuts import redirect
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('testapp/',include('testapp.urls',namespace='testapp')),
+    path('', include('testapp.urls',namespace='testapp')),
     path('user/',include('user.urls', namespace='user')),
     path('dashboard/',include('dashbord.urls', namespace='dash')),
     path('dashboard_admin/',include('dashboard_admin.urls', namespace='dash_admin')),
@@ -29,6 +31,7 @@ urlpatterns = [
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_sent.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_form.html'), name='password_reset_confirm'),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_done.html'), name='password_reset_complete'),
+    re_path(r'^.*$', lambda request: redirect('testapp:home'))
 ]
 
 if settings.DEBUG:
